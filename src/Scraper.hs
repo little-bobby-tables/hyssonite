@@ -1,6 +1,17 @@
 module Scraper where
 
-  data Scraped = Scraped { imageUrl     :: String
-                         , thumbnailUrl :: String
-                         , artist       :: Maybe String
-                         , pageUrl      :: Maybe String } deriving (Show)
+  import qualified Data.ByteString as S
+  import qualified Data.ByteString.Char8 as SC8
+
+  bString :: String -> SC8.ByteString
+  bString = SC8.pack
+
+  toString :: SC8.ByteString -> String
+  toString = SC8.unpack
+
+  type BString = S.ByteString
+
+  data Scraped = Scraped { imageUrl     :: BString
+                         , thumbnailUrl :: BString
+                         , artist       :: Maybe BString
+                         , pageUrl      :: Maybe BString } deriving (Show, Eq)
