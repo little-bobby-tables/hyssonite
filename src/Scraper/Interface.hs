@@ -8,7 +8,9 @@ module Scraper.Interface (scrape) where
     import qualified Scraper.Tumblr as T
 
     scrape :: (MonadHTTP m) => String -> m (Maybe Scraped)
-    scrape = scrapeUrl -- TODO: use httpUrl to validate the URL
+    scrape url = case httpUrl url of
+      Just validUrl -> scrapeUrl validUrl
+      Nothing -> return Nothing
 
     scrapeUrl :: (MonadHTTP m) => String -> m (Maybe Scraped)
     scrapeUrl url
