@@ -17,16 +17,16 @@ module Scraper.TumblrSpec where
       it "handles /post links" $ (playCassette . scrape)
         "https://iam-photography.tumblr.com/post/157409807702/crescent-over-the-flame" >>= \scraped ->
           scraped `shouldBe` Just Scraped
-            { imageUrl = "http://68.media.tumblr.com/f68ccec85fba7442ab715691d4d07615/tumblr_oldh8iK0kd1ubet1po1_1280.jpg"
-            , thumbnailUrl = "http://68.media.tumblr.com/f68ccec85fba7442ab715691d4d07615/tumblr_oldh8iK0kd1ubet1po1_500.jpg"
+            { imageUrl = "https://68.media.tumblr.com/f68ccec85fba7442ab715691d4d07615/tumblr_oldh8iK0kd1ubet1po1_1280.jpg"
+            , thumbnailUrl = "https://68.media.tumblr.com/f68ccec85fba7442ab715691d4d07615/tumblr_oldh8iK0kd1ubet1po1_500.jpg"
             , artist = Just "iam-photography"
             , pageUrl = Just "http://iam-photography.tumblr.com/post/157409807702/crescent-over-the-flame" }
 
       it "handles /post links without slugs" $ (playCassette . scrape)
         "https://regnumsaturni.tumblr.com/post/155685354066?something#something" >>= \scraped ->
           scraped `shouldBe` Just Scraped
-            { imageUrl = "http://68.media.tumblr.com/f4258a9dd1a3ed4e7122a8f7a5563095/tumblr_ojl0jzV49W1s0jbtpo1_1280.jpg"
-            , thumbnailUrl = "http://68.media.tumblr.com/f4258a9dd1a3ed4e7122a8f7a5563095/tumblr_ojl0jzV49W1s0jbtpo1_500.jpg"
+            { imageUrl = "https://68.media.tumblr.com/f4258a9dd1a3ed4e7122a8f7a5563095/tumblr_ojl0jzV49W1s0jbtpo1_1280.jpg"
+            , thumbnailUrl = "https://68.media.tumblr.com/f4258a9dd1a3ed4e7122a8f7a5563095/tumblr_ojl0jzV49W1s0jbtpo1_500.jpg"
             , artist = Just "regnumsaturni"
             , pageUrl = Just "http://regnumsaturni.tumblr.com/post/155685354066" }
 

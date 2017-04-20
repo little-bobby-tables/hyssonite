@@ -5,6 +5,7 @@ module Scraper.Interface (scrape) where
     import Scraper
     import Scraper.Internal (MonadHTTP, redirectedFrom, httpUrl)
     import qualified Scraper.Deviantart as DA
+    import qualified Scraper.Tumblr as T
 
     scrape :: (MonadHTTP m) => String -> m (Maybe Scraped)
     scrape = scrapeUrl -- TODO: use httpUrl to validate the URL
@@ -18,7 +19,7 @@ module Scraper.Interface (scrape) where
       | url =~ "\\Ahttps?://.+\\.deviantart\\.net/.+d.+"
         = DA.fromCDN url
       | url =~ "\\Ahttps?://.+\\.tumblr\\.com/(post|image)/.+"
-        = return Nothing
+        = T.fromPost url
       | url =~ "\\Ahttps?://.*\\.(jpg|jpeg|png|gif|svg)"
         = return Nothing
       | otherwise
