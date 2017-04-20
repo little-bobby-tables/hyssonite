@@ -1,5 +1,3 @@
-{-# LANGUAGE OverloadedStrings #-}
-
 module Scraper.Tumblr (fromPost) where
 
   import Scraper

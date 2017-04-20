@@ -1,5 +1,3 @@
-{-# LANGUAGE OverloadedStrings #-}
-
 module Scraper.Internal.DOM ( (<@)
                             , hasAttr
                             , hasClass

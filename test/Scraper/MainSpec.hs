@@ -1,5 +1,3 @@
-{-# LANGUAGE OverloadedStrings #-}
-
 module Scraper.MainSpec where
 
   import Test.Hspec

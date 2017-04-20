@@ -1,5 +1,3 @@
-{-# LANGUAGE OverloadedStrings #-}
-
 module Scraper.Deviantart (fromPost, fromCDN) where
 
   import Scraper

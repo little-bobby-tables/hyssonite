@@ -1,5 +1,3 @@
-{-# LANGUAGE OverloadedStrings #-}
-
 module Scraper.TumblrSpec where
 
   import Test.Hspec

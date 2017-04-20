@@ -1,5 +1,3 @@
-{-# LANGUAGE OverloadedStrings #-}
-
 module Scraper.DeviantartSpec where
 
   import Test.Hspec
