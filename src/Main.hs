@@ -1,6 +1,7 @@
 module Main where
 
   import Scraper.Interface (scrape)
+  import Server (runServer)
 
   main :: IO ()
   main = do

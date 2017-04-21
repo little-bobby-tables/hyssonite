@@ -23,6 +23,7 @@ executable hyssonite
     exceptions,
     transformers,
     bytestring,
+    blaze-builder,
     http-conduit,
     http-client,
     http-client-tls,
@@ -31,7 +32,9 @@ executable hyssonite
     conduit,
     tagsoup,
     fast-tagsoup,
-    regex-pcre
+    regex-pcre,
+    warp,
+    wai
   -- ghc-options:      -Wall
 
 test-suite spec
@@ -47,6 +50,7 @@ test-suite spec
     exceptions,
     transformers,
     bytestring,
+    blaze-builder,
     http-conduit,
     http-client,
     http-client-tls,
@@ -56,6 +60,8 @@ test-suite spec
     tagsoup,
     fast-tagsoup,
     regex-pcre,
+    warp,
+    wai,
     cryptohash,
     pretty-hex,
     directory,
