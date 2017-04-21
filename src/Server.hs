@@ -7,9 +7,9 @@ module Server where
 
   import Data.Aeson (encode)
 
-  import Network.Wai (Application, Request, Response, queryString, responseBuilder, responseLBS)
+  import Network.Wai (Application, Request, Response, queryString, responseLBS)
   import Network.Wai.Handler.Warp (run)
-  import Network.HTTP.Types (ok200, badRequest400)
+  import Network.HTTP.Types (ok200, badRequest400, notFound404)
   import Network.HTTP.Types.Header (hContentType)
 
   serverPort = 3030
@@ -28,9 +28,11 @@ module Server where
       Nothing -> return respondWith400
 
   respondWith400 :: Response
-  respondWith400 = responseBuilder badRequest400 [] ""
+  respondWith400 = responseLBS badRequest400 [] ""
 
   respondWithScraped :: Maybe Scraped -> Response
   respondWithScraped scraped =
-    let json = encode scraped
-    in responseLBS ok200 [(hContentType, "application/json")] json
+    case scraped of
+      Just record -> let json = encode record
+                     in responseLBS ok200 [(hContentType, "application/json")] json
+      Nothing -> responseLBS notFound404 [] ""

@@ -31,5 +31,5 @@ module Scraper.InterfaceSpec where
 
     describe "unsupported urls" $ do
       it "returns Nothing" $ (playCassette . scrape)
-        "https://www.someobscurefanartsite.org/images/18" >>= \scraped ->
+        "https://www.someobscurefanartsite.org/images/56" >>= \scraped ->
           scraped `shouldBe` Nothing

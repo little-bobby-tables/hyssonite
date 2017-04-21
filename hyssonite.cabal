@@ -69,4 +69,6 @@ test-suite spec
     directory,
     binary,
     case-insensitive,
-    hspec
+    hspec,
+    hspec-wai,
+    hspec-wai-json
