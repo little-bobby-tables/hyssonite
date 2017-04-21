@@ -13,7 +13,6 @@ module Scraper.Internal.HTTP ( httpUrl
 
   import Network.HTTP.Conduit
   import Network.HTTP.Types.Header (Header)
-  import Network.HTTP.Client.TLS (getGlobalManager)
 
   import qualified Data.ByteString.Lazy as L
 
@@ -27,7 +26,7 @@ module Scraper.Internal.HTTP ( httpUrl
            "https://" -> Just url
            "http://"  -> Just url
            ""         -> Just ("http://" ++ url)
-           otherwise  -> Nothing
+           _          -> Nothing
 
   userAgent :: Header
   userAgent = ("User-Agent", "Mozilla/5.0 (Linux x86_64) Hyssonite/1.0")
@@ -48,8 +47,8 @@ module Scraper.Internal.HTTP ( httpUrl
   -- Higher-level HTTP GET function.
   -- URL -> cookies
   fetchPage :: (MonadHTTP m) => String -> [Cookie] -> m ([Cookie], BString)
-  fetchPage url cookies = do
-    response <- fetch request url [] cookies
+  fetchPage url withCookies = do
+    response <- fetch request url [] withCookies
     let cookies = (destroyCookieJar . responseCookieJar) response
         body = (L.toStrict . responseBody) response
     return (cookies, body)

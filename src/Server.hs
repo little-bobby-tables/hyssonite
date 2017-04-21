@@ -1,6 +1,6 @@
-module Server where
+module Server (runServer, app) where
 
-  import Scraper (Scraped, BString, toString)
+  import Scraper (Scraped, toString)
   import Scraper.Interface (scrape)
 
   import Control.Monad (join)
@@ -8,10 +8,11 @@ module Server where
   import Data.Aeson (encode)
 
   import Network.Wai (Application, Request, Response, queryString, responseLBS)
-  import Network.Wai.Handler.Warp (run)
+  import Network.Wai.Handler.Warp (Port, run)
   import Network.HTTP.Types (ok200, badRequest400, notFound404)
   import Network.HTTP.Types.Header (hContentType)
 
+  serverPort :: Port
   serverPort = 3030
 
   runServer :: IO ()
