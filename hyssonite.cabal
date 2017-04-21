@@ -1,74 +1,134 @@
+-- This file has been generated from package.yaml by hpack version 0.17.0.
+--
+-- see: https://github.com/sol/hpack
+
 name:                hyssonite
-version:             0.1.0.0
-synopsis:            Haskell Ymage Scraper Service
--- description:
-homepage:            https://github.com/little-bobby-tables/image-scraping-service
+version:             0.1.0
+synopsis:            An ymage scraper service for Fan Universe
+description:         See README at <https://github.com/little-bobby-tables/hyssonite#readme>
+homepage:            https://github.com/little-bobby-tables/hyssonite#readme
+bug-reports:         https://github.com/little-bobby-tables/hyssonite/issues
 license:             PublicDomain
 license-file:        LICENSE
-author:              little-bobby-tables
-maintainer:          whitediamond@fanuniverse.org
+maintainer:          little-bobby-tables <whitediamond@fanuniverse.org>
 category:            Web
 build-type:          Simple
-cabal-version:       >=1.10
-extra-source-files:  README.md
+cabal-version:       >= 1.10
 
-executable hyssonite
-  default-language:   Haskell2010
+source-repository head
+  type: git
+  location: https://github.com/little-bobby-tables/hyssonite
+
+library
+  hs-source-dirs:
+    src
   default-extensions: OverloadedStrings
-  main-is:            Main.hs
-  hs-source-dirs:     src
+  ghc-options: -Wall
   build-depends:
     base >= 4.7 && < 5,
     mtl,
-    exceptions,
     transformers,
+    exceptions,
     bytestring,
     blaze-builder,
+    conduit,
     http-conduit,
     http-client,
     http-client-tls,
     http-types,
-    resourcet,
-    conduit,
     tagsoup,
     fast-tagsoup,
     regex-pcre,
     warp,
     wai,
     aeson
-  -- ghc-options:      -Wall
+  exposed-modules:
+    Server
+    Scraper
+    Scraper.Interface
+    Scraper.Deviantart
+    Scraper.Tumblr
+    Scraper.Internal
+    Scraper.Internal.DOM
+    Scraper.Internal.HTTP
+    Scraper.Internal.MonadHTTP
+  other-modules:
+    Paths_hyssonite
+  default-language: Haskell2010
 
-test-suite spec
-  type:               exitcode-stdio-1.0
-  default-language:   Haskell2010
+executable hyssonite
+  default-language: Haskell2010
   default-extensions: OverloadedStrings
-  main-is:            Spec.hs
-  hs-source-dirs:     test, src
-  ghc-options:        -v0
+  main-is: Main.hs
+  hs-source-dirs:
+    exec
   build-depends:
     base >= 4.7 && < 5,
     mtl,
-    exceptions,
     transformers,
+    exceptions,
     bytestring,
     blaze-builder,
+    conduit,
     http-conduit,
     http-client,
     http-client-tls,
     http-types,
-    resourcet,
-    conduit,
     tagsoup,
     fast-tagsoup,
     regex-pcre,
     warp,
     wai,
     aeson,
+    hyssonite
+  ghc-options: -Wall
+
+test-suite spec
+  type: exitcode-stdio-1.0
+  default-language: Haskell2010
+  default-extensions: OverloadedStrings
+  main-is: Spec.hs
+  hs-source-dirs:
+    test
+    src
+  ghc-options: -Wall
+  build-depends:
+    base >= 4.7 && < 5,
+    mtl,
+    transformers,
+    exceptions,
+    bytestring,
+    blaze-builder,
+    conduit,
+    http-conduit,
+    http-client,
+    http-client-tls,
+    http-types,
+    tagsoup,
+    fast-tagsoup,
+    regex-pcre,
+    warp,
+    wai,
+    aeson,
+    hspec,
+    hspec-wai,
+    hspec-wai-json,
     cryptohash,
     pretty-hex,
     directory,
-    binary,
-    case-insensitive,
-    hspec,
-    hspec-wai,
-    hspec-wai-json
+    binary
+  other-modules:
+    HTTPCassette
+    Scraper.DeviantartSpec
+    Scraper.InterfaceSpec
+    Scraper.TumblrSpec
+    ServerSpec
+    Scraper
+    Scraper.Deviantart
+    Scraper.Interface
+    Scraper.Internal
+    Scraper.Internal.DOM
+    Scraper.Internal.HTTP
+    Scraper.Internal.MonadHTTP
+    Scraper.Tumblr
+    Server
