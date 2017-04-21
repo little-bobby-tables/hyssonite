@@ -24,8 +24,8 @@ module Scraper.Interface (scrape) where
         = T.fromPost url
       | url =~ ("\\Ahttps?://.*\\.(jpg|jpeg|png|gif|svg)"       :: String)
         = return $ Just Scraped
-          { imageUrl = bString url
-          , thumbnailUrl = bString url
+          { imageUrl = url
+          , thumbnailUrl = url
           , artist = Nothing
           , pageUrl = Nothing }
       | otherwise

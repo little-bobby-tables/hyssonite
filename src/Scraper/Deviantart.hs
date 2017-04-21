@@ -24,10 +24,10 @@ module Scraper.Deviantart (fromPost, fromCDN) where
     let thumbnailUrl = firstAttr "src" $ hasClass "dev-content-normal" <@ page
         artist = firstText $ hasClass "username" <@ hasClass "dev-title-container" <@ page
         pageUrl = firstAttr "content" $ (hasAttr "property" "og:url") <@ page
-    return $ Just Scraped { imageUrl = imageUrl
-                          , thumbnailUrl = thumbnailUrl
-                          , artist = Just artist
-                          , pageUrl = Just pageUrl }
+    return $ Just Scraped { imageUrl = toString imageUrl
+                          , thumbnailUrl = toString thumbnailUrl
+                          , artist = Just $ toString artist
+                          , pageUrl = Just $ toString pageUrl }
 
   followDownloadLink :: (MonadHTTP m) => BString -> [Cookie] -> m BString
   followDownloadLink link cookies =

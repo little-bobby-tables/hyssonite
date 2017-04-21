@@ -34,7 +34,8 @@ executable hyssonite
     fast-tagsoup,
     regex-pcre,
     warp,
-    wai
+    wai,
+    aeson
   -- ghc-options:      -Wall
 
 test-suite spec
@@ -62,6 +63,7 @@ test-suite spec
     regex-pcre,
     warp,
     wai,
+    aeson,
     cryptohash,
     pretty-hex,
     directory,

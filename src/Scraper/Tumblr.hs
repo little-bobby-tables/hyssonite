@@ -20,9 +20,9 @@ module Scraper.Tumblr (fromPost) where
         thumbnailUrl = firstText $ hasAttr "max-width" "500" <@ doc
         artist = firstAttr "name" $ isTagOpenName "tumblelog" <@ doc
         pageUrl = firstAttr "url-with-slug" $ isTagOpenName "post" <@ doc
-    return $ Just Scraped { imageUrl = imageUrl
-                          , thumbnailUrl = thumbnailUrl
-                          , artist = Just artist
-                          , pageUrl = Just pageUrl }
+    return $ Just Scraped { imageUrl = toString imageUrl
+                          , thumbnailUrl = toString thumbnailUrl
+                          , artist = Just $ toString artist
+                          , pageUrl = Just $ toString pageUrl }
     where apiUrl = blog ++ "/api/read?id=" ++ postId
           (blog, postId) = (\m -> ((m !! 1), (m !! 3))) . head $ (url =~ postRegex :: [[String]])
