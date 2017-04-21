@@ -3,6 +3,8 @@ module Scraper.Deviantart (fromPost, fromCDN) where
   import Scraper
   import Scraper.Internal
 
+  import Strings (BString, bString, toString)
+
   import Text.Regex.PCRE ((=~))
 
   import Network.HTTP.Conduit (Cookie)

@@ -30,6 +30,7 @@ dependencies:
   - warp
   - wai
   - aeson
+  - cryptonite
 
 library:
   source-dirs: src

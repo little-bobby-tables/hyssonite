@@ -3,6 +3,8 @@ module Scraper.Tumblr (fromPost) where
   import Scraper
   import Scraper.Internal
 
+  import Strings (toString)
+
   import Text.Regex.PCRE ((=~))
 
   import Text.HTML.TagSoup.Fast (parseTags)

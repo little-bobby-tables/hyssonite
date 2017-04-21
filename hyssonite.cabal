@@ -41,7 +41,8 @@ library
     regex-pcre,
     warp,
     wai,
-    aeson
+    aeson,
+    cryptonite
   exposed-modules:
     Server
     Scraper
@@ -53,6 +54,8 @@ library
     Scraper.Internal.HTTP
     Scraper.Internal.MonadHTTP
   other-modules:
+    Camo
+    Strings
     Paths_hyssonite
   default-language: Haskell2010
 
@@ -80,6 +83,7 @@ executable hyssonite
     warp,
     wai,
     aeson,
+    cryptonite,
     hyssonite
   ghc-options: -Wall
 
@@ -110,6 +114,7 @@ test-suite spec
     warp,
     wai,
     aeson,
+    cryptonite,
     hspec,
     hspec-wai,
     hspec-wai-json,
@@ -123,6 +128,7 @@ test-suite spec
     Scraper.InterfaceSpec
     Scraper.TumblrSpec
     ServerSpec
+    Camo
     Scraper
     Scraper.Deviantart
     Scraper.Interface
@@ -132,3 +138,4 @@ test-suite spec
     Scraper.Internal.MonadHTTP
     Scraper.Tumblr
     Server
+    Strings

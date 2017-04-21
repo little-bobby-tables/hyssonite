@@ -3,7 +3,8 @@ module Scraper.Internal.HTTP ( httpUrl
                              , redirectedFrom
                              , redirectedFromWithCookies) where
 
-  import Scraper (BString, toString)
+  import Strings (BString, toString)
+
   import Scraper.Internal.MonadHTTP (MonadHTTP, LResponse, httpLResponse)
 
   import Data.List (find)

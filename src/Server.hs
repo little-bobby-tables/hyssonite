@@ -1,7 +1,9 @@
 module Server (runServer, app) where
 
-  import Scraper (Scraped, toString)
+  import Scraper (Scraped)
   import Scraper.Interface (scrape)
+
+  import Strings (toString)
 
   import Control.Monad (join)
 
