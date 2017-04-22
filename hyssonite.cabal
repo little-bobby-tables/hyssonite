@@ -42,6 +42,7 @@ library
     warp,
     wai,
     aeson,
+    hex,
     cryptonite
   exposed-modules:
     Server
@@ -83,6 +84,7 @@ executable hyssonite
     warp,
     wai,
     aeson,
+    hex,
     cryptonite,
     hyssonite
   ghc-options: -Wall
@@ -114,12 +116,11 @@ test-suite spec
     warp,
     wai,
     aeson,
+    hex,
     cryptonite,
     hspec,
     hspec-wai,
     hspec-wai-json,
-    cryptohash,
-    pretty-hex,
     directory,
     binary
   other-modules:

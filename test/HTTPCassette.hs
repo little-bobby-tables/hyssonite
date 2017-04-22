@@ -2,18 +2,17 @@
 
 module HTTPCassette (HTTPCassette, playCassette) where
 
-  import Scraper (BString, bString)
+  import Strings (bString)
   import Scraper.Internal.MonadHTTP
 
-  import System.Directory (getCurrentDirectory, doesFileExist)
+  import Crypto.Hash (Digest, SHA1, hash)
   import Data.Binary (Binary, get, put, encode, decode)
+
+  import System.Directory (getCurrentDirectory, doesFileExist)
 
   import qualified Data.ByteString.Lazy as L
 
   import Control.Monad.Catch (MonadThrow)
-
-  import Crypto.Hash.SHA1 (hash)
-  import Hexdump (simpleHex)
 
   import Network.HTTP.Conduit (Request, createCookieJar, destroyCookieJar)
   import Network.HTTP.Client.Internal (Response(..), ResponseClose(..))
@@ -33,7 +32,8 @@ module HTTPCassette (HTTPCassette, playCassette) where
     doesFileExist fixture >>= \t -> if t
       then replay fixture
       else runAndRecord request fixture
-    where hashId = (filter (/= ' ')) . simpleHex . hash . bString . show
+    where sha1 s = show (hash (bString s) :: Digest SHA1)
+          hashId = sha1 . show
           fixtureDir = (++ "/test/fixtures") <$> getCurrentDirectory
           fixtureFile = (++ "/" ++ hashId request) <$> fixtureDir
 
@@ -47,7 +47,7 @@ module HTTPCassette (HTTPCassette, playCassette) where
     return response
 
   instance Binary LResponse where
-    put (Response status _ headers body cookies rcls) = do
+    put (Response status _ headers body cookies _) = do
       put $ statusCode status
       put $ statusMessage status
       put $ show headers
