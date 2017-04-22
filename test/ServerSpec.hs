@@ -6,20 +6,28 @@ module ServerSpec where
   import Test.Hspec.Wai
   import Test.Hspec.Wai.JSON
 
-  import Server (app)
+  import Network.Wai (Application)
+
+  import Server (ServerConfiguration(..), app)
 
   main :: IO ()
   main = hspec spec
 
+  testApp :: IO Application
+  testApp = return $ app $ ServerConfiguration
+    { camoHost = "https://camo.org"
+    , camoKey = "461fbf74af826c3a1020"
+    , port = 3000 }
+
   spec :: Spec
-  spec = with (return app) $ do
+  spec = with testApp $ do
     describe "GET /?url=" $ do
       context "(supported url)" $ do
         it "responds with JSON-encoded scraped data" $ do
-          get "/?url=http://somewebsite.com/image.png"
+          get "/?url=https://www.example.com/path/to/image.png"
             `shouldRespondWith`
-              [json| { imageUrl: "http://somewebsite.com/image.png",
-                       thumbnailUrl: "http://somewebsite.com/image.png",
+              [json| { imageUrl: "https://camo.org/b82e650cfe20239b66f7165e54c3b9036d722aef/68747470733a2f2f7777772e6578616d706c652e636f6d2f706174682f746f2f696d6167652e706e67",
+                       thumbnailUrl: "https://camo.org/b82e650cfe20239b66f7165e54c3b9036d722aef/68747470733a2f2f7777772e6578616d706c652e636f6d2f706174682f746f2f696d6167652e706e67",
                        artist: null,
                        pageUrl: null } |]
               { matchStatus = 200
