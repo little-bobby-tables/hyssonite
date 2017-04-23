@@ -23,7 +23,7 @@ library
   hs-source-dirs:
     src
   default-extensions: OverloadedStrings
-  ghc-options: -Wall
+  ghc-options: -Wall -O2
   build-depends:
     base >= 4.7 && < 5,
     mtl,
@@ -87,7 +87,7 @@ executable hyssonite
     hex,
     cryptonite,
     hyssonite
-  ghc-options: -Wall
+  ghc-options: -Wall -O2
 
 test-suite spec
   type: exitcode-stdio-1.0
@@ -97,7 +97,7 @@ test-suite spec
   hs-source-dirs:
     test
     src
-  ghc-options: -Wall
+  ghc-options: -Wall -O2
   build-depends:
     base >= 4.7 && < 5,
     mtl,

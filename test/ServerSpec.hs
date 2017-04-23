@@ -26,7 +26,7 @@ module ServerSpec where
         it "responds with JSON-encoded scraped data" $ do
           get "/?url=https://www.example.com/path/to/image.png"
             `shouldRespondWith`
-              [json| { imageUrl: "https://camo.org/b82e650cfe20239b66f7165e54c3b9036d722aef/68747470733a2f2f7777772e6578616d706c652e636f6d2f706174682f746f2f696d6167652e706e67",
+              [json| { imageUrl: "https://www.example.com/path/to/image.png",
                        thumbnailUrl: "https://camo.org/b82e650cfe20239b66f7165e54c3b9036d722aef/68747470733a2f2f7777772e6578616d706c652e636f6d2f706174682f746f2f696d6167652e706e67",
                        artist: null,
                        pageUrl: null } |]

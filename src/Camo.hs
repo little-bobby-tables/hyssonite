@@ -17,5 +17,4 @@ module Camo where
 
   camoifyScraped :: String -> String -> Scraped -> Scraped
   camoifyScraped host key scraped = scraped
-    { imageUrl = camo host key (imageUrl scraped),
-      thumbnailUrl = camo host key (thumbnailUrl scraped) }
+    { thumbnailUrl = camo host key (thumbnailUrl scraped) }

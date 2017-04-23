@@ -10,7 +10,7 @@ category: Web
 default-extensions:
   - OverloadedStrings
 
-ghc-options: -Wall
+ghc-options: -Wall -O2
 
 dependencies:
   - base >= 4.7 && < 5
